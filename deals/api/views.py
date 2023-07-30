@@ -42,7 +42,7 @@ class UploadDealsListCustomerAPIView(views.APIView):
 
     def get(self, request, *args, **kwargs):
         customers_cache = cache.get('customers_cache')
-        if not customers_cache:
+        if not customers_cache['response']:
             serializer = CustomerSerializer(self.get_queryset(), many=True)
             data = {
                 'response': serializer.data
